@@ -1,0 +1,31 @@
+--- a/gtk/meson.build
++++ b/gtk/meson.build
+@@ -930,18 +930,26 @@
+       input : gtk_gresource,
+       output : 'gtkresources_blob.o',
+       command : [ld,
++                 '-m', 'elf_x86_64',
+                  '-z', 'noexecstack',
+                  '-r',
+                  '-b','binary',
+                  '@INPUT@',
+                  '-o','@OUTPUT@'])
+ 
++  gtk_resources_strip = custom_target('gtkresources_blobS.o',
++      input : gtk_resources_binary,
++      output : 'gtkresources_blobS.o',
++      command : [objcopy,
++                 '--strip-all',
++                 '@INPUT@',
++                 '@OUTPUT@'])
++
+   # Rename symbol to match the one in the C file
+   gtk_resources_o = custom_target('gtkresources_blob2.o',
+-    input : gtk_resources_binary,
++    input : gtk_resources_strip,
+     output : 'gtkresources_blob2.o',
+     command : [objcopy,
+-                 '--strip-all',
+                  '--add-symbol','_gtk_resource_data=.data:0',
+                  '@INPUT@',
+                  '@OUTPUT@'])
