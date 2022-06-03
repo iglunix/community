@@ -1,3 +1,4 @@
+#m Star
 pkgname=gtk
 _pkgver=4.7
 pkgver=$_pkgver.0
