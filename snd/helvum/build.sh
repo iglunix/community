@@ -1,3 +1,4 @@
+#m Star
 pkgname=helvum
 pkgver=0.3.4
 
