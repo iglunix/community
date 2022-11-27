@@ -1,6 +1,6 @@
 --- a/gtk/meson.build
 +++ b/gtk/meson.build
-@@ -930,18 +930,26 @@
+@@ -935,18 +935,26 @@
        input : gtk_gresource,
        output : 'gtkresources_blob.o',
        command : [ld,
@@ -26,6 +26,6 @@
      output : 'gtkresources_blob2.o',
      command : [objcopy,
 -                 '--strip-all',
-                  '--add-symbol','_gtk_resource_data=.data:0',
+                  '--rename-section', '.data=.gresource.gtk',
+                  '--add-symbol','_gtk_resource_data=.gresource.gtk:0',
                   '@INPUT@',
-                  '@OUTPUT@'])

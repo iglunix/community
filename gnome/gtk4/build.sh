@@ -1,7 +1,7 @@
 #m Star
 pkgname=gtk
-_pkgver=4.7
-pkgver=$_pkgver.0
+_pkgver=4.8
+pkgver=$_pkgver.1
 
 fetch() {
 	curl -L "https://download.gnome.org/sources/$pkgname/$_pkgver/$pkgname-$pkgver.tar.xz" -o $pkgname-$pkgver.tar.xz
